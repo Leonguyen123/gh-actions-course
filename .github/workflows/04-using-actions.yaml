@@ -2,11 +2,17 @@ name: 04 - Using Actions
 on: push
 
 jobs:
-  job-checkout-code:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code Step
-        run: echo "Checkout Code"
-        
-      - name: Printing Folders Step
-        run: echo "Printing Folders"
+        uses: actions/checkout@v4
+      - name: Printing folders
+        run: ls
+
+    #   - name: Setup node Step
+    #     working-directory: 04-using-actions/gh-actions-app
+    #     run: npm ci
+
+    #   - name: Install Dependencies
+    #     run: echo "Setup node"  
