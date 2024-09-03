@@ -1,9 +1,13 @@
 name: 04 - Using Actions
-on: push
+
+on: workflow_dispatch
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 04-using-actions/gh-actions-app
     steps:
       - name: Checkout Code Step
         uses: actions/checkout@v4
@@ -11,14 +15,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
+          node-version: "20.x"
 
       - name: Install Dependencies
-        working-directory: 04-using-actions/gh-actions-app
         run: npm ci
-    #   - name: Setup node Step
-    #     working-directory: 04-using-actions/gh-actions-app
-    #     run: npm ci
 
-    #   - name: Install Dependencies
-    #     run: echo "Setup node"  
+      - name: Run Units Tests
+        run: npm run test
