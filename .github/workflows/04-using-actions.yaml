@@ -1,0 +1,12 @@
+name: 04 - Using Actions
+on: push
+
+jobs:
+  job-checkout-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Step
+        run: echo "Checkout Code"
+        
+      - name: Printing Folders Step
+        run: echo "Printing Folders"
