@@ -1,0 +1,33 @@
+name: 06-Contexts
+
+run-name: 06-Contexts | DEBUG - ${{ inputs.debug }}
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
+
+env:
+    MY_WORKFLOW_VAR: "workflow"
+    MY_OVERWRITE_FLOWS_VAR: "overwrite"   
+
+jobs:
+  echo-data:
+    runs-on: ubuntu-latest
+    env:
+        MY_JOBS_VAR: "workflow"
+        MY_OVERWRITE_JOBS_VAR: "overwrite" 
+    steps:
+      - name: Display Information
+        run: |
+          echo "Even Name: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Ref: ${{ github.sha }}"
+          echo "Ref: ${{ github.actor }}"
+          echo "Ref: ${{ github.event.inputs.debug }}"
+      - name: Retrieve Variable
+        run: |
+          echo "Variable value: ${{ vars.MY_VAR }}"
